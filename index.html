@@ -39,8 +39,6 @@
     <button class="nav-close" id="navClose" aria-label="Cerrar menú"><svg class="i"><use href="#i-x"/></svg></button>
     <div class="nav-label">PRUEBAS</div>
     <button class="activo" data-panel="caso1"><svg class="i"><use href="#i-shield"/></svg>Cert válido<span class="badge ok">200</span></button>
-    <button data-panel="caso2"><svg class="i"><use href="#i-shield-off"/></svg>Sin certificado<span class="badge err">401</span></button>
-    <button data-panel="caso3"><svg class="i"><use href="#i-shield-x"/></svg>Cert revocado<span class="badge err">401</span></button>
     <button data-panel="caso4"><svg class="i"><use href="#i-laptop"/></svg>Multi-dispositivo</button>
     <div class="nav-label">RECURSOS</div>
     <button data-panel="comandos"><svg class="i"><use href="#i-term"/></svg>Comandos demo</button>
@@ -57,42 +55,6 @@
         <button class="btn" data-m="GET" data-p="/api/perfil" data-render="perfil"><svg class="i"><use href="#i-user"/></svg><span class="bt"><b>Ver perfil</b><small>GET /api/perfil</small></span></button>
         <button class="btn" data-m="GET" data-p="/api/documentos" data-render="documentos"><svg class="i"><use href="#i-list"/></svg><span class="bt"><b>Listar documentos</b><small>GET /api/documentos</small></span></button>
         <button class="btn" data-m="POST" data-p="/api/documentos" data-render="json"><svg class="i"><use href="#i-plus"/></svg><span class="bt"><b>Crear documento</b><small>POST /api/documentos</small></span></button>
-      </div>
-      <div class="resultado"></div>
-    </section>
-
-    <!-- CASO 2 -->
-    <section id="caso2" class="panel">
-      <div class="tag">Caso 02 · Sin certificado</div>
-      <h2>Sin certificado → 401</h2>
-      <p class="desc">Se llama a <code>/api/sin-acceso</code>, que siempre responde 401. Chrome cachea el certificado de Windows, así que una petición «sin certificado» real se demuestra con <code>curl.exe</code> (ver Comandos demo).</p>
-      <div class="acciones">
-        <button class="btn rojo" data-m="GET" data-p="/api/sin-acceso" data-render="rechazo"><svg class="i"><use href="#i-shield-off"/></svg><span class="bt"><b>Intentar sin certificado</b><small>GET /api/sin-acceso</small></span></button>
-      </div>
-      <div class="resultado"></div>
-    </section>
-
-    <!-- CASO 3 -->
-    <section id="caso3" class="panel">
-      <div class="tag">Caso 03 · Revocación</div>
-      <h2>Certificado revocado → 401</h2>
-      <p class="desc">El API consulta Key Vault en cada petición: si el certificado está deshabilitado, lo rechaza.</p>
-      <ol class="pasos">
-        <li>Ejecuta <b>REVOCAR</b> en PowerShell y espera unos segundos.</li>
-        <li>Pulsa «Llamar con cert revocado»: debe dar <b>401</b>.</li>
-        <li>Ejecuta <b>RESTAURAR</b>, espera y pulsa «Restaurar y verificar»: debe dar <b>200</b>.</li>
-      </ol>
-      <div class="cmd">
-        <div class="cmd-head"><span>Revocar certificado</span><button class="copy">Copiar</button></div>
-        <pre>az keyvault certificate set-attributes --vault-name kv-pki-proyecto3 --name cliente-1 --enabled false</pre>
-      </div>
-      <div class="cmd">
-        <div class="cmd-head"><span>Restaurar certificado</span><button class="copy">Copiar</button></div>
-        <pre>az keyvault certificate set-attributes --vault-name kv-pki-proyecto3 --name cliente-1 --enabled true</pre>
-      </div>
-      <div class="acciones">
-        <button class="btn rojo" data-m="GET" data-p="/api/perfil" data-render="perfil"><svg class="i"><use href="#i-alert"/></svg><span class="bt"><b>Llamar con cert revocado</b><small>GET /api/perfil</small></span></button>
-        <button class="btn verde" data-m="GET" data-p="/api/perfil" data-render="perfil"><svg class="i"><use href="#i-undo"/></svg><span class="bt"><b>Restaurar y verificar</b><small>GET /api/perfil</small></span></button>
       </div>
       <div class="resultado"></div>
     </section>

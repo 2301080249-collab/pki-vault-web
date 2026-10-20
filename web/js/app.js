@@ -96,7 +96,6 @@ function mostrar(contenedor, status, ok, data, render, ruta) {
   if (ok && render === "perfil" && data && typeof data === "object") card.append(datosPerfil(data));
   if (ok && render === "documentos" && data && Array.isArray(data.documentos)) card.append(tablaDocumentos(data));
 
-  card.append(typeof data === "object" && data !== null ? jsonResaltado(data) : el("pre", "", String(data || "(sin cuerpo)")));
   contenedor.replaceChildren(card);
 }
 
